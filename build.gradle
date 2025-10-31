@@ -1,0 +1,81 @@
+plugins {
+    id "java"
+    id "org.springframework.boot" version "3.5.7"
+    id "io.spring.dependency-management" version "1.1.7"
+}
+
+group = "com.davidechiarelli"
+version = "1.0.0"
+description = "sporty-events"
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext{
+    set("camelVersion", "4.15.0")
+    set('springCloudVersion', "2025.0.0")
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation "org.springframework.boot:spring-boot-starter-validation"
+
+    implementation "org.apache.camel.springboot:camel-spring-boot-starter:${camelVersion}"
+    implementation "org.apache.camel.springboot:camel-http-starter:${camelVersion}"
+    implementation "org.apache.camel.springboot:camel-scheduler-starter:${camelVersion}"
+    implementation "org.apache.camel.springboot:camel-bean-validator-starter:${camelVersion}"
+    implementation "org.apache.camel.springboot:camel-kafka-starter:${camelVersion}"
+    implementation "org.apache.camel.springboot:camel-jackson-starter:${camelVersion}"
+
+    implementation "org.mapstruct:mapstruct:1.6.3"
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+
+    runtimeOnly "com.h2database:h2"
+
+    compileOnly "org.projectlombok:lombok"
+    annotationProcessor "org.projectlombok:lombok"
+
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.6.3"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "org.springframework.boot:spring-boot-starter-web"
+    testImplementation 'org.springframework.cloud:spring-cloud-contract-wiremock'
+
+    testImplementation "org.apache.camel:camel-test-spring-junit5:${camelVersion}"
+    testImplementation "org.apache.camel.springboot:camel-spring-boot-starter:${camelVersion}"
+    testImplementation "org.testcontainers:kafka:1.19.8"
+    testImplementation "org.testcontainers:junit-jupiter:1.19.8"
+    testImplementation "org.springframework.kafka:spring-kafka-test"
+    testImplementation "org.apache.camel:camel-http"
+    testImplementation "org.apache.camel:camel-bean-validator"
+
+    
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+    
+    
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+tasks.named("test") {
+    useJUnitPlatform()
+}
