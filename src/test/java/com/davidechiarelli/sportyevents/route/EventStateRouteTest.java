@@ -44,7 +44,7 @@ class EventStateRouteTest {
     void setUp() throws Exception {
 
         ShutdownStrategy shutdownStrategy = new DefaultShutdownStrategy();
-        shutdownStrategy.setTimeout(5);
+        shutdownStrategy.setTimeout(10);
         shutdownStrategy.setShutdownNowOnTimeout(true);
         shutdownStrategy.setLogInflightExchangesOnTimeout(true);
         shutdownStrategy.setSuppressLoggingOnTimeout(true);
