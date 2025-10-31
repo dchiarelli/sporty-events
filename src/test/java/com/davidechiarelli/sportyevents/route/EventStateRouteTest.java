@@ -26,7 +26,7 @@ import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER
 
 @SpringBootTest
 @CamelSpringBootTest
-@AutoConfigureWireMock(port = 5555, stubs = {"classpath:/mappings"})
+@AutoConfigureWireMock(port = 0, stubs = {"classpath:/mappings"})
 @ActiveProfiles("test")
 @DirtiesContext(classMode = AFTER_EACH_TEST_METHOD)
 class EventStateRouteTest {

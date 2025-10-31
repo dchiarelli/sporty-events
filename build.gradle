@@ -58,8 +58,6 @@ dependencies {
 
     testImplementation "org.apache.camel:camel-test-spring-junit5:${camelVersion}"
     testImplementation "org.apache.camel.springboot:camel-spring-boot-starter:${camelVersion}"
-    testImplementation "org.testcontainers:kafka:1.19.8"
-    testImplementation "org.testcontainers:junit-jupiter:1.19.8"
     testImplementation "org.springframework.kafka:spring-kafka-test"
     testImplementation "org.apache.camel:camel-http"
     testImplementation "org.apache.camel:camel-bean-validator"
